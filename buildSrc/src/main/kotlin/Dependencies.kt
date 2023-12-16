@@ -44,6 +44,10 @@ fun DependencyHandler.implementComposeMaterial3() {
     implementation(ANDROID_COMPOSE_MATERIAL3)
 }
 
+fun DependencyHandler.implementSDPCompose() {
+    implementation(COMPOSE_SDP)
+}
+
 fun DependencyHandler.testImplementationJUnit() {
     testImplementation(TEST_JUNIT)
 }

@@ -12,6 +12,7 @@ internal const val ANDROID_COMPOSE_GRAPHICS = "androidx.compose.ui:ui-graphics"
 internal const val ANDROID_COMPOSE_TOOLING_PREVIEW = "androidx.compose.ui:ui-tooling-preview"
 internal const val ANDROID_COMPOSE_MATERIAL3 = "androidx.compose.material3:material3"
 internal const val ANDROID_MATERIAL = "com.google.android.material:material:$VERSION_ANDROID_MATERIAL"
+internal const val COMPOSE_SDP = "com.github.Kaaveh:sdp-compose:$VERSION_COMPOSE_SDP"
 
 // test
 internal const val TEST_JUNIT = "junit:junit:$VERSION_JUNIT"

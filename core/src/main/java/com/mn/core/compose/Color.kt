@@ -15,14 +15,35 @@ private val TextReversed = Color(0xFFFFFFFF)
 private val Button = Color(0xFF2765CF)
 private val WhiteColor = Color(0xFFFFFFFF)
 
-val ColorScheme.BrandBlue : Color
+val ColorScheme.backgroundBrand: Color
     get() = BackgroundBrand
 
-val ColorScheme.White : Color
+val ColorScheme.backgroundSecondary: Color
+    get() = BackgroundSecondary
+
+val ColorScheme.cardBackground: Color
+    get() = CardBackground
+
+val ColorScheme.textPrimary: Color
+    get() = TextPrimary
+
+val ColorScheme.textSecondary: Color
+    get() = TextSecondary
+
+val ColorScheme.textReversed: Color
+    get() = TextReversed
+
+val ColorScheme.brandBlue: Color
+    get() = BackgroundBrand
+
+val ColorScheme.button: Color
+    get() = Button
+
+val ColorScheme.white: Color
     get() = WhiteColor
 
-val ColorScheme.blueBrand : List<Color>
-    get() = listOf(BrandBlue, BrandBlue)
+val ColorScheme.blueButton: List<Color>
+    get() = listOf(button, button)
 
 val Pink80 = Color(0xFFEFB8C8)
 

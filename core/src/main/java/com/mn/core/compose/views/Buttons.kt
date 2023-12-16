@@ -20,10 +20,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.mn.core.compose.White
-import com.mn.core.compose.blueBrand
+import com.mn.core.compose.blueButton
 import com.mn.core.compose.button
+import com.mn.core.compose.white
+import ir.kaaveh.sdpcompose.sdp
 
 
 @Composable
@@ -39,12 +39,12 @@ fun BlueButton(
         boxModifier = boxModifier
             .background(
                 Brush.verticalGradient(
-                    colors = MaterialTheme.colorScheme.blueBrand,
+                    colors = MaterialTheme.colorScheme.blueButton,
                 ),
             )
-            .padding(horizontal = 30.dp, vertical = 16.dp),
+            .padding(horizontal = 30.sdp, vertical = 16.sdp),
         text = text,
-        textColor = MaterialTheme.colorScheme.White,
+        textColor = MaterialTheme.colorScheme.white,
         enabled = enabled,
         onCLick = onClick
     )
@@ -66,7 +66,7 @@ fun SeekButton(
             containerColor = Color.Transparent,
         ),
         contentPadding = PaddingValues(),
-        shape = RoundedCornerShape(50.dp),
+        shape = RoundedCornerShape(10.sdp),
 
         elevation = elevation,
         enabled = enabled,
@@ -74,7 +74,7 @@ fun SeekButton(
     ) {
         Box(
             modifier = boxModifier
-                .clip(RoundedCornerShape(50.dp)),
+                .clip(RoundedCornerShape(10.sdp)),
             contentAlignment = Alignment.Center,
         ) {
             Row {

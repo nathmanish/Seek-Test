@@ -59,6 +59,7 @@ dependencies {
     implementComposeGraphics()
     implementComposeToolingPreview()
     implementComposeMaterial3()
+    implementSDPCompose()
     testImplementationJUnit()
     androidTestImplementationExtJUnit()
     androidTestImplementationEspressoCore()
