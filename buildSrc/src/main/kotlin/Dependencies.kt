@@ -8,6 +8,14 @@ fun DependencyHandler.implementCoreKtx() {
     implementation(CORE_KTX)
 }
 
+fun DependencyHandler.implementAppCompat() {
+    implementation(APP_COMPAT)
+}
+
+fun DependencyHandler.implementAndroidMaterial() {
+    implementation(ANDROID_MATERIAL)
+}
+
 fun DependencyHandler.implementAndroidLifeCycleKtx() {
     implementation(ANDROID_LIFE_CYCLE_KTX)
 }
@@ -62,4 +70,8 @@ fun DependencyHandler.debugImplementationComposeUITooling() {
 
 fun DependencyHandler.debugImplementationComposeUITestManifest() {
     debugImplementation(COMPOSE_UI_TEST_MANIFEST)
+}
+
+fun DependencyHandler.addCoreModule() {
+    implementationProject(CORE_MODULE)
 }

@@ -13,3 +13,7 @@ fun PluginDependenciesSpec.pluginAndroidApplication(apply: Boolean = true) {
 fun PluginDependenciesSpec.pluginAndroidKotlin(apply: Boolean = true) {
     id("org.jetbrains.kotlin.android") version (VERSION_KOTLIN) apply (apply)
 }
+
+fun PluginDependenciesSpec.pluginLibrary() {
+    id("com.android.library")
+}

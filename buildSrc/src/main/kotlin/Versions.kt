@@ -5,6 +5,8 @@
 internal const val VERSION_AGP = "8.2.0"
 internal const val VERSION_KOTLIN = "1.9.0"
 internal const val VERSION_CORE_KTX = "1.10.1"
+internal const val VERSION_APP_COMPAT = "1.6.1"
+internal const val VERSION_ANDROID_MATERIAL = "1.11.0"
 internal const val VERSION_LIFE_CYCLE_KTX = "2.6.1"
 internal const val VERSION_COMPOSE = "1.7.0"
 internal const val VERSION_COMPOSE_BOM = "2023.08.00"

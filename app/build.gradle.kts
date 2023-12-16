@@ -66,4 +66,6 @@ dependencies {
     androidTestImplementationComposeUITestJunit()
     debugImplementationComposeUITooling()
     debugImplementationComposeUITestManifest()
+
+    addCoreModule()
 }

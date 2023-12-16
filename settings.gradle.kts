@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Seek Test"
 include(":app")
+include(":core")

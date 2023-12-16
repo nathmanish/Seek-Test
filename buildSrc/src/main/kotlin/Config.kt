@@ -12,4 +12,5 @@ object Config {
     const val ANDROID_TEST_INSTRUMENTATION = "androidx.test.runner.AndroidJUnitRunner"
     const val JVM_TARGET = "1.8"
     const val KOTLIN_COMPILE_VERSION = "1.5.1"
+    const val CORE_LIBRARY = "com.mn.core"
 }

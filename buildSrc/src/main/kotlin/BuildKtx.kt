@@ -1,4 +1,5 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.project
 
 fun DependencyHandler.implementation(dependency: String) {
     add("implementation", dependency)
@@ -18,4 +19,8 @@ fun DependencyHandler.androidTestImplementation(dependency: String) {
 
 fun DependencyHandler.debugImplementation(dependency: String) {
     add("debugImplementation", dependency)
+}
+
+fun DependencyHandler.implementationProject(dependency: String) {
+    add("implementation", project(dependency))
 }
