@@ -79,3 +79,7 @@ fun DependencyHandler.debugImplementationComposeUITestManifest() {
 fun DependencyHandler.addCoreModule() {
     implementationProject(CORE_MODULE)
 }
+
+fun DependencyHandler.implementApollo() {
+    implementation(ANDROID_APOLLO)
+}

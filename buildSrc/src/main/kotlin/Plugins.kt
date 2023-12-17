@@ -17,3 +17,7 @@ fun PluginDependenciesSpec.pluginAndroidKotlin(apply: Boolean = true) {
 fun PluginDependenciesSpec.pluginLibrary() {
     id("com.android.library")
 }
+
+fun PluginDependenciesSpec.pluginApollo() {
+    id("com.apollographql.apollo3").version(VERSION_APOLLO_PLUGIN)
+}

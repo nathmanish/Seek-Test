@@ -1,7 +1,18 @@
 plugins {
     pluginLibrary()
     pluginAndroidKotlin()
+    pluginApollo()
+    kotlin("kapt")
 }
+
+apollo {
+    service("seek") {
+        srcDir("src/main/graphql/seek")
+        packageName.set("com.mn.seektest")
+        schemaFile.set(File("src/main/graphql/seek/schema.json"))
+    }
+}
+
 
 android {
     namespace = Config.CORE_LIBRARY
@@ -24,8 +35,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = Config.JVM_TARGET
@@ -48,6 +59,7 @@ dependencies {
     implementComposeToolingPreview()
     implementComposeMaterial3()
     implementSDPCompose()
+    implementApollo()
     testImplementationJUnit()
     androidTestImplementationExtJUnit()
     androidTestImplementationEspressoCore()
