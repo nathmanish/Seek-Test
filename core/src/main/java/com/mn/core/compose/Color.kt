@@ -36,6 +36,9 @@ val ColorScheme.textReversed: Color
 val ColorScheme.brandBlue: Color
     get() = BackgroundBrand
 
+val ColorScheme.blue: Color
+    get() = button
+
 val ColorScheme.button: Color
     get() = Button
 

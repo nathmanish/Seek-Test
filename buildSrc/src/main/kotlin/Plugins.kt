@@ -21,3 +21,7 @@ fun PluginDependenciesSpec.pluginLibrary() {
 fun PluginDependenciesSpec.pluginApollo() {
     id("com.apollographql.apollo3").version(VERSION_APOLLO_PLUGIN)
 }
+
+fun PluginDependenciesSpec.pluginDaggerHilt(apply: Boolean = true) {
+    id("com.google.dagger.hilt.android") version (HILT_VERSION) apply (apply)
+}

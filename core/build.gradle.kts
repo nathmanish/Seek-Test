@@ -59,7 +59,7 @@ dependencies {
     implementComposeToolingPreview()
     implementComposeMaterial3()
     implementSDPCompose()
-    implementApollo()
+    addApolloApi()
     testImplementationJUnit()
     androidTestImplementationExtJUnit()
     androidTestImplementationEspressoCore()

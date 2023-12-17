@@ -80,6 +80,14 @@ fun DependencyHandler.addCoreModule() {
     implementationProject(CORE_MODULE)
 }
 
-fun DependencyHandler.implementApollo() {
-    implementation(ANDROID_APOLLO)
+fun DependencyHandler.addApolloApi() {
+    api(ANDROID_APOLLO)
+}
+
+fun DependencyHandler.addDaggerHilt() {
+    implementation(DAGGER_HILT)
+}
+
+fun DependencyHandler.addDaggerHiltKapt() {
+    kapt(DAGGER_KAPT_HILT)
 }

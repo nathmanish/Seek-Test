@@ -2,4 +2,5 @@
 plugins {
     pluginAndroidApplication(apply = false)
     pluginAndroidKotlin(apply = false)
+    pluginDaggerHilt(apply = false)
 }

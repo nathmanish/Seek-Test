@@ -1,6 +1,8 @@
 plugins {
     pluginAndroidApplication()
     pluginAndroidKotlin()
+    pluginDaggerHilt()
+    kotlin("kapt")
 }
 
 android {
@@ -60,6 +62,8 @@ dependencies {
     implementComposeToolingPreview()
     implementComposeMaterial3()
     implementSDPCompose()
+    addDaggerHilt()
+    addDaggerHiltKapt()
     testImplementationJUnit()
     androidTestImplementationExtJUnit()
     androidTestImplementationEspressoCore()

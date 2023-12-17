@@ -32,11 +32,16 @@ import com.mn.core.compose.title2
 import com.mn.core.compose.title5
 import com.mn.core.compose.title6
 import com.mn.core.compose.views.BlueButton
+import com.mn.core.compose.views.SeekLoader
 import com.mn.seektest.R
+import com.mn.seektest.login.presentation.states.LoginUIState
 import ir.kaaveh.sdpcompose.sdp
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    loginUIState: LoginUIState,
+    loginListener: LoginListener?
+) {
 
     var emailAddress by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -129,7 +134,7 @@ fun LoginScreen() {
                     boxModifier = Modifier.fillMaxWidth(),
                     text = stringResource(id = R.string.sign_in)
                 ) {
-
+                    loginListener?.onLoginClicked(username = emailAddress, password = password)
                 }
                 Row(
                     modifier = Modifier
@@ -151,6 +156,10 @@ fun LoginScreen() {
                     )
                 }
             }
+
+            if (loginUIState.isLoading) {
+                SeekLoader()
+            }
         }
     }
 }
@@ -158,5 +167,12 @@ fun LoginScreen() {
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen()
+    LoginScreen(
+        loginUIState = LoginUIState(),
+        loginListener = null
+    )
+}
+
+interface LoginListener {
+    fun onLoginClicked(username: String, password: String)
 }
