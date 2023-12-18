@@ -5,5 +5,6 @@ object SeekConstants {
     const val MY_PREFS = "seek_prefs"
 
     // pref-keys
-    const val KEY_JWT_TOKEN = "seek_prefs"
+    const val IS_LOGIN = "is_login"
+    const val KEY_JWT_TOKEN = "jwt_token"
 }

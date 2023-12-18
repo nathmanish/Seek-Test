@@ -20,4 +20,13 @@ class SeekPreferencesHelper(
     fun getString(key: String): String? {
         return sharedPreferences.getString(key, "")
     }
+
+    fun putBoolean(key: String, value: Boolean) {
+        editor.putBoolean(key, value)
+        editor.commit()
+    }
+
+    fun getBoolean(key: String): Boolean {
+        return sharedPreferences.getBoolean(key, false)
+    }
 }

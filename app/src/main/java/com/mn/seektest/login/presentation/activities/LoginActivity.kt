@@ -9,9 +9,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.lifecycleScope
 import com.mn.core.compose.SeekTestTheme
+import com.mn.core.constants.SeekConstants.IS_LOGIN
 import com.mn.core.constants.SeekConstants.KEY_JWT_TOKEN
 import com.mn.core.utils.SeekPreferencesHelper
 import com.mn.seektest.R
+import com.mn.seektest.home.presentation.activities.HomeActivity
 import com.mn.seektest.login.data.LoginRequestModel
 import com.mn.seektest.login.presentation.viewmodels.LoginViewModel
 import com.mn.seektest.login.presentation.widgets.LoginListener
@@ -37,14 +39,23 @@ class LoginActivity : ComponentActivity(), LoginListener {
 
             SeekTestTheme {
                 LoginScreen(
-                    loginUIState = loginUIState,
-                    loginListener = this
+                    loginUIState = loginUIState, loginListener = this
                 )
             }
         }
 
+        checkLogin()
         observeViewModel()
     }
+
+    private fun checkLogin() {
+        if (seekPreferencesHelper.getBoolean(IS_LOGIN)) {
+            launchHomeActivity()
+            finish()
+        }
+    }
+
+    private fun launchHomeActivity() = HomeActivity.startActivity(this)
 
     private fun observeViewModel() = with(lifecycleScope) {
         launch {
@@ -58,6 +69,8 @@ class LoginActivity : ComponentActivity(), LoginListener {
                         ).show()
                     } else {
                         seekPreferencesHelper.putString(KEY_JWT_TOKEN, it.auth)
+                        seekPreferencesHelper.putBoolean(IS_LOGIN, true)
+                        launchHomeActivity()
                     }
                 }
             }
