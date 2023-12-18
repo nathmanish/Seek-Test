@@ -26,7 +26,7 @@ class LoginViewModel @Inject constructor(
     val loginFlow = _loginFlow.asStateFlow()
 
     fun performLogin(loginRequestModel: LoginRequestModel) {
-        _loginFlow.update { it.copy(isLoading = true) }
+        _loginFlow.update { it.copy(isLoading = true, isSuccess = false) }
         viewModelScope.launch(ioDispatcher) {
             runCatching {
                 loginRepository.performLogin(loginRequestModel).collectLatest { auth ->
@@ -35,6 +35,7 @@ class LoginViewModel @Inject constructor(
                             it.copy(
                                 isLoading = false,
                                 auth = auth,
+                                isSuccess = true,
                                 showError = auth.isEmpty()
                             )
                         }

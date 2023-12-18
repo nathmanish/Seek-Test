@@ -14,6 +14,7 @@ private val TextSecondary = Color(0xFF69768C)
 private val TextReversed = Color(0xFFFFFFFF)
 private val Button = Color(0xFF2765CF)
 private val WhiteColor = Color(0xFFFFFFFF)
+private val BlackTransparent = Color(0x80000000)
 
 val ColorScheme.backgroundBrand: Color
     get() = BackgroundBrand
@@ -44,6 +45,9 @@ val ColorScheme.button: Color
 
 val ColorScheme.white: Color
     get() = WhiteColor
+
+val ColorScheme.blackTransparent : Color
+    get() = BlackTransparent
 
 val ColorScheme.blueButton: List<Color>
     get() = listOf(button, button)

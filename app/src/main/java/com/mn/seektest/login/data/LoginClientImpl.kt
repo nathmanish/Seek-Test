@@ -8,11 +8,16 @@ class LoginClientImpl(
 ) : LoginClient {
 
     override suspend fun performLogin(loginRequestModel: LoginRequestModel): String {
-        return apolloClient.mutation(
-            Mutation(
-                username = loginRequestModel.username,
-                password = loginRequestModel.password,
-            )
-        ).execute().data?.auth ?: ""
+        try {
+            return apolloClient.mutation(
+                Mutation(
+                    username = loginRequestModel.username,
+                    password = loginRequestModel.password,
+                )
+            ).execute().data?.auth ?: ""
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return ""
     }
 }

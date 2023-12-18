@@ -8,13 +8,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.mn.core.compose.blackTransparent
 import com.mn.core.compose.blue
+import com.mn.core.extensions.noRippleClickable
 
 @Composable
 fun SeekLoader() {
     Box(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.blackTransparent)
+            .noRippleClickable { },
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(

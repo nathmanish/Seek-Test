@@ -8,4 +8,6 @@
     <string name="no_account">Don\'t have an account?</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="register_now">Register Now</string>
+    <string name="username_password_mandatory_msg">Username and password cannot be blank</string>
+    <string name="username_password_incorrect">username or password is incorrect, Please try again.</string>
 </resources>
