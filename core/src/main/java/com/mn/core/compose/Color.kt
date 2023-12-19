@@ -52,6 +52,9 @@ val ColorScheme.blackTransparent : Color
 val ColorScheme.blueButton: List<Color>
     get() = listOf(button, button)
 
+val ColorScheme.disableButton: List<Color>
+    get() = listOf(TextSecondary, TextSecondary)
+
 val Pink80 = Color(0xFFEFB8C8)
 
 val Pink40 = Color(0xFF7D5260)

@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.mn.core.compose.blueButton
 import com.mn.core.compose.button
+import com.mn.core.compose.disableButton
 import com.mn.core.compose.white
 import ir.kaaveh.sdpcompose.sdp
 
@@ -40,6 +41,30 @@ fun BlueButton(
             .background(
                 Brush.verticalGradient(
                     colors = MaterialTheme.colorScheme.blueButton,
+                ),
+            )
+            .padding(horizontal = 30.sdp, vertical = 16.sdp),
+        text = text,
+        textColor = MaterialTheme.colorScheme.white,
+        enabled = enabled,
+        onCLick = onClick
+    )
+}
+
+@Composable
+fun DisableButton(
+    modifier: Modifier = Modifier,
+    boxModifier: Modifier = Modifier,
+    text: String,
+    enabled: Boolean = true,
+    onClick: () -> Unit
+) {
+    SeekButton(
+        modifier = modifier,
+        boxModifier = boxModifier
+            .background(
+                Brush.verticalGradient(
+                    colors = MaterialTheme.colorScheme.disableButton,
                 ),
             )
             .padding(horizontal = 30.sdp, vertical = 16.sdp),
@@ -95,6 +120,16 @@ fun SeekButton(
 @Composable
 fun BlueButtonPreview() {
     BlueButton(
+        modifier = Modifier.fillMaxWidth(),
+        boxModifier = Modifier.fillMaxWidth(),
+        text = "Seek",
+    ) {}
+}
+
+@Preview
+@Composable
+fun DisableButtonPreview() {
+    DisableButton(
         modifier = Modifier.fillMaxWidth(),
         boxModifier = Modifier.fillMaxWidth(),
         text = "Seek",

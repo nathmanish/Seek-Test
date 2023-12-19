@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -23,17 +24,25 @@ import com.mn.seektest.R
 import com.mn.seektest.home.navigation.HomeScreenNavigator
 import com.mn.seektest.home.navigation.HomeScreenRoute.*
 import com.mn.seektest.home.presentation.states.ActiveJobsUIState
+import com.mn.seektest.home.presentation.states.ApplyJobUIState
+import com.mn.seektest.home.presentation.states.JobDetailsUIState
 import com.mn.seektest.home.presentation.viewmodels.ActiveJobsViewModel
+import com.mn.seektest.home.presentation.viewmodels.JobDetailsViewModel
 import com.mn.seektest.home.presentation.widgets.HomeScreen
+import com.mn.seektest.home.presentation.widgets.JobDetailsListener
 import com.mn.seektest.home.presentation.widgets.JobDetailsScreen
 import com.mn.seektest.home.presentation.widgets.JobScreenListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @AndroidEntryPoint
-class HomeActivity : ComponentActivity(), JobScreenListener {
+class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener {
 
     private val activeJobsViewModel: ActiveJobsViewModel by viewModels()
+
+    private val jobDetailsViewModel: JobDetailsViewModel by viewModels()
 
     lateinit var navHostController: NavHostController
 
@@ -69,15 +78,23 @@ class HomeActivity : ComponentActivity(), JobScreenListener {
                             }
                         )
                     ) {
+                        val jobDetailsUIState: JobDetailsUIState by jobDetailsViewModel.jobDetailsUIState.collectAsState()
+                        val applyJobUIState: ApplyJobUIState by jobDetailsViewModel.applyJobUIState.collectAsState()
+
                         JobDetailsScreen(
                             navigator = navigator,
+                            jobDetailsUIState = jobDetailsUIState,
+                            applyJobUIState = applyJobUIState,
                             jobId = it.arguments?.getString(EXTRA_JOB_ID),
-                            jobTitle = it.arguments?.getString(EXTRA_JOB_TITLE)
+                            jobTitle = it.arguments?.getString(EXTRA_JOB_TITLE),
+                            jobDetailsListener = this@HomeActivity
                         )
                     }
                 }
             }
         }
+
+        observerViewModels()
     }
 
     private val navigator: HomeScreenNavigator by lazy {
@@ -93,6 +110,24 @@ class HomeActivity : ComponentActivity(), JobScreenListener {
         }
     }
 
+    private fun observerViewModels() = with(lifecycleScope) {
+        launch {
+            jobDetailsViewModel.applyJobUIState.collectLatest {
+                if (it.showError) {
+                    showErrorToast()
+                }
+            }
+        }
+    }
+
+    private fun showErrorToast() {
+        Toast.makeText(
+            this@HomeActivity,
+            getString(R.string.something_went_wrong),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
     companion object {
         fun startActivity(context: Context) {
             val intent = Intent(context, HomeActivity::class.java)
@@ -104,11 +139,15 @@ class HomeActivity : ComponentActivity(), JobScreenListener {
         activeJobsViewModel.getActiveJobs()
     }
 
+    override fun initJob(jobId: String) {
+        jobDetailsViewModel.getJobDetails(jobId)
+    }
+
+    override fun applyJob(jobId: String) {
+        jobDetailsViewModel.applyJob(jobId)
+    }
+
     override fun onLoadError() {
-        Toast.makeText(
-            this@HomeActivity,
-            getString(R.string.something_went_wrong),
-            Toast.LENGTH_SHORT
-        ).show()
+        showErrorToast()
     }
 }
