@@ -1,5 +1,6 @@
 package com.mn.seektest.home.presentation.widgets
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,18 +19,24 @@ import com.mn.core.compose.textPrimary
 import com.mn.core.compose.textSecondary
 import com.mn.core.compose.title6
 import com.mn.seektest.Query
+import com.mn.seektest.home.navigation.HomeScreenNavigator
 import ir.kaaveh.sdpcompose.sdp
 
 @Composable
 fun JobListItem(
+    navigator: HomeScreenNavigator?,
     index: Int,
     job: Query.Job?
 ) {
     Card(
-        modifier = Modifier.padding(
-            top = if (index == 0) 10.sdp else 0.sdp,
-            bottom = 10.sdp
-        ),
+        modifier = Modifier
+            .padding(
+                top = if (index == 0) 10.sdp else 0.sdp,
+                bottom = 10.sdp
+            )
+            .clickable {
+                navigator?.goToJobDetails(jobId = job?._id ?: "", job?.positionTitle ?: "")
+            },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.cardBackground
         ),
@@ -65,6 +72,7 @@ fun JobListItem(
 @Composable
 fun JobListItemPreview() {
     JobListItem(
+        navigator = null,
         index = 0,
         job = null
     )

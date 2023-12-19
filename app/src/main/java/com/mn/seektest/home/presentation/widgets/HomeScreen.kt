@@ -20,11 +20,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.mn.core.compose.brandBlue
 import com.mn.core.compose.textSecondary
+import com.mn.seektest.home.navigation.HomeScreenNavigator
 import com.mn.seektest.home.presentation.states.ActiveJobsUIState
 import com.mn.seektest.home.presentation.states.HomeTabs
 
 @Composable
 fun HomeScreen(
+    navigator: HomeScreenNavigator,
     activeJobsUIState: ActiveJobsUIState,
     jobScreenListener: JobScreenListener,
 ) {
@@ -72,6 +74,7 @@ fun HomeScreen(
         ) {
             when (selectedTab) {
                 HomeTabs.Jobs -> JobsScreen(
+                    navigator = navigator,
                     jobScreenListener = jobScreenListener,
                     activeJobsUIState = activeJobsUIState
                 )

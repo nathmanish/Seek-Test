@@ -64,6 +64,10 @@ fun DependencyHandler.implementSwipeRefreshCompose() {
     implementation(SWIPE_REFRESH)
 }
 
+fun DependencyHandler.implementComposeNavigation() {
+    implementation(COMPOSE_NAVIGATION)
+}
+
 fun DependencyHandler.testImplementationJUnit() {
     testImplementation(TEST_JUNIT)
 }

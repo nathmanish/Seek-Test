@@ -19,11 +19,13 @@ import com.mn.core.compose.backgroundSecondary
 import com.mn.core.compose.blue
 import com.mn.core.compose.views.SeekPageLoader
 import com.mn.seektest.Query
+import com.mn.seektest.home.navigation.HomeScreenNavigator
 import com.mn.seektest.home.presentation.states.ActiveJobsUIState
 import ir.kaaveh.sdpcompose.sdp
 
 @Composable
 fun JobsScreen(
+    navigator: HomeScreenNavigator,
     activeJobsUIState: ActiveJobsUIState,
     jobScreenListener: JobScreenListener
 ) {
@@ -59,6 +61,7 @@ fun JobsScreen(
             ) {
                 items(jobItems.itemCount) { index ->
                     JobListItem(
+                        navigator = navigator,
                         index = index,
                         job = jobItems[index]
                     )

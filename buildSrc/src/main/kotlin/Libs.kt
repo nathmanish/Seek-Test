@@ -24,6 +24,7 @@ internal const val VIEW_MODEL_COMPOSE =
     "androidx.lifecycle:lifecycle-viewmodel-compose:$VIEW_MODEL_COMPOSE_VERSION"
 internal const val SWIPE_REFRESH =
     "com.google.accompanist:accompanist-swiperefresh:$SWIPE_REFRESH_VERSION"
+internal const val COMPOSE_NAVIGATION = "androidx.navigation:navigation-compose:$COMPOSE_NAVIGATION_VERSION"
 
 // test
 internal const val TEST_JUNIT = "junit:junit:$VERSION_JUNIT"

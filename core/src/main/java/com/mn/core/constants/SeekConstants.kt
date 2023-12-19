@@ -8,4 +8,8 @@ object SeekConstants {
     // pref-keys
     const val IS_LOGIN = "is_login"
     const val KEY_JWT_TOKEN = "jwt_token"
+
+    // bundle keys
+    const val EXTRA_JOB_ID = "job_id"
+    const val EXTRA_JOB_TITLE = "job_title"
 }
