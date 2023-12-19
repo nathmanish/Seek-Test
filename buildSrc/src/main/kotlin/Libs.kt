@@ -18,6 +18,12 @@ internal const val COMPOSE_SDP = "com.github.Kaaveh:sdp-compose:$VERSION_COMPOSE
 internal const val ANDROID_APOLLO = "com.apollographql.apollo3:apollo-runtime:$VERSION_APOLLO"
 internal const val DAGGER_HILT = "com.google.dagger:hilt-android:$HILT_VERSION"
 internal const val DAGGER_KAPT_HILT = "com.google.dagger:hilt-android-compiler:$HILT_VERSION"
+internal const val PAGING_RUNTIME = "androidx.paging:paging-runtime:$PAGING_VERSION"
+internal const val PAGING_COMPOSE = "androidx.paging:paging-compose:$PAGING_VERSION"
+internal const val VIEW_MODEL_COMPOSE =
+    "androidx.lifecycle:lifecycle-viewmodel-compose:$VIEW_MODEL_COMPOSE_VERSION"
+internal const val SWIPE_REFRESH =
+    "com.google.accompanist:accompanist-swiperefresh:$SWIPE_REFRESH_VERSION"
 
 // test
 internal const val TEST_JUNIT = "junit:junit:$VERSION_JUNIT"

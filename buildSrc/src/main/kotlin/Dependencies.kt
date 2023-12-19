@@ -48,6 +48,22 @@ fun DependencyHandler.implementSDPCompose() {
     implementation(COMPOSE_SDP)
 }
 
+fun DependencyHandler.implementPagingRuntime() {
+    implementation(PAGING_RUNTIME)
+}
+
+fun DependencyHandler.implementComposePaging() {
+    implementation(PAGING_COMPOSE)
+}
+
+fun DependencyHandler.implementViewModelCompose() {
+    implementation(VIEW_MODEL_COMPOSE)
+}
+
+fun DependencyHandler.implementSwipeRefreshCompose() {
+    implementation(SWIPE_REFRESH)
+}
+
 fun DependencyHandler.testImplementationJUnit() {
     testImplementation(TEST_JUNIT)
 }

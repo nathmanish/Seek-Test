@@ -20,10 +20,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.mn.core.compose.brandBlue
 import com.mn.core.compose.textSecondary
+import com.mn.seektest.home.presentation.states.ActiveJobsUIState
 import com.mn.seektest.home.presentation.states.HomeTabs
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    activeJobsUIState: ActiveJobsUIState,
+    jobScreenListener: JobScreenListener,
+) {
     var selectedTab: HomeTabs by remember {
         mutableStateOf(HomeTabs.Jobs)
     }
@@ -67,7 +71,11 @@ fun HomeScreen() {
                 .padding(innerPadding)
         ) {
             when (selectedTab) {
-                HomeTabs.Jobs -> JobsScreen()
+                HomeTabs.Jobs -> JobsScreen(
+                    jobScreenListener = jobScreenListener,
+                    activeJobsUIState = activeJobsUIState
+                )
+
                 HomeTabs.MyJobs -> MyJobsScreen()
                 HomeTabs.Profile -> ProfileScreen()
             }

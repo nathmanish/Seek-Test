@@ -31,11 +31,12 @@ val Typography.headline7: TextStyle
 val Typography.body2: TextStyle
     @Composable get() = TextStyle(
         fontFamily = FontFamily.Default,
-        fontSize = 14.ssp,
+        fontSize = 10.ssp,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal,
         letterSpacing = (0.2).sp
     )
+
 
 val Typography.caption1: TextStyle
     @Composable get() = TextStyle(
@@ -54,6 +55,16 @@ val Typography.caption2: TextStyle
         fontStyle = FontStyle.Normal,
         letterSpacing = (0.4).sp
     )
+
+val Typography.caption3: TextStyle
+    @Composable get() = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontSize = 10.ssp,
+        fontWeight = FontWeight.Light,
+        fontStyle = FontStyle.Normal,
+        letterSpacing = (0.4).sp
+    )
+
 
 val Typography.button: TextStyle
     @Composable get() = TextStyle(
