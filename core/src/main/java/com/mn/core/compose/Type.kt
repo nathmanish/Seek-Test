@@ -10,6 +10,15 @@ import androidx.compose.ui.unit.sp
 import ir.kaaveh.sdpcompose.ssp
 
 
+val Typography.headline5: TextStyle
+    @Composable get() = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontSize = 12.ssp,
+        fontWeight = FontWeight.Medium,
+        fontStyle = FontStyle.Normal,
+        letterSpacing = (0.4).sp
+    )
+
 val Typography.headline6: TextStyle
     @Composable get() = TextStyle(
         fontFamily = FontFamily.Default,
@@ -60,6 +69,15 @@ val Typography.caption3: TextStyle
     @Composable get() = TextStyle(
         fontFamily = FontFamily.Default,
         fontSize = 10.ssp,
+        fontWeight = FontWeight.Light,
+        fontStyle = FontStyle.Normal,
+        letterSpacing = (0.4).sp
+    )
+
+val Typography.captionLarge: TextStyle
+    @Composable get() = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontSize = 22.ssp,
         fontWeight = FontWeight.Light,
         fontStyle = FontStyle.Normal,
         letterSpacing = (0.4).sp

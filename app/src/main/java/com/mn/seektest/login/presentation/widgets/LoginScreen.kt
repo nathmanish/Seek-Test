@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -23,7 +24,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import com.mn.core.compose.brandBlue
 import com.mn.core.compose.button
 import com.mn.core.compose.caption2
 import com.mn.core.compose.textPrimary
@@ -33,6 +37,7 @@ import com.mn.core.compose.title5
 import com.mn.core.compose.title6
 import com.mn.core.compose.views.BlueButton
 import com.mn.core.compose.views.SeekLoader
+import com.mn.core.extensions.noRippleClickable
 import com.mn.seektest.R
 import com.mn.seektest.login.presentation.states.LoginUIState
 import ir.kaaveh.sdpcompose.sdp
@@ -45,6 +50,10 @@ fun LoginScreen(
 
     var emailAddress by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    var isPasswordVisible by remember {
+        mutableStateOf(false)
+    }
 
     Scaffold {
         Box(
@@ -87,6 +96,7 @@ fun LoginScreen(
                     onValueChange = {
                         emailAddress = it
                     },
+                    singleLine = true,
                     label = {
                         Text(
                             text = stringResource(id = R.string.enter_email_address),
@@ -119,6 +129,18 @@ fun LoginScreen(
                     value = password,
                     onValueChange = {
                         password = it
+                    },
+                    singleLine = true,
+                    visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                    trailingIcon = {
+                        Icon(
+                            modifier = Modifier.noRippleClickable {
+                                isPasswordVisible = !isPasswordVisible
+                            },
+                            painter = painterResource(id = R.drawable.ic_eye),
+                            contentDescription = "show-password-icon",
+                            tint = if(isPasswordVisible) MaterialTheme.colorScheme.brandBlue else MaterialTheme.colorScheme.textSecondary
+                        )
                     },
                     label = {
                         Text(

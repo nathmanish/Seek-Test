@@ -1,5 +1,6 @@
 package com.mn.core.compose.views
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import com.mn.core.compose.backgroundSecondary
 import com.mn.core.compose.body2
 import com.mn.core.compose.brandBlue
 import com.mn.core.compose.textPrimary
@@ -30,7 +32,10 @@ fun SeekNoDataView(
     description: String
 ) {
     Box(
-        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.backgroundSecondary),
+        contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),

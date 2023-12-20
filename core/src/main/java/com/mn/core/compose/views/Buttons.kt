@@ -21,8 +21,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.mn.core.compose.blueButton
+import com.mn.core.compose.brandBlue
 import com.mn.core.compose.button
 import com.mn.core.compose.disableButton
+import com.mn.core.compose.grayButton
 import com.mn.core.compose.white
 import ir.kaaveh.sdpcompose.sdp
 
@@ -47,7 +49,31 @@ fun BlueButton(
         text = text,
         textColor = MaterialTheme.colorScheme.white,
         enabled = enabled,
-        onCLick = onClick
+        onClick = onClick
+    )
+}
+
+@Composable
+fun ThinWhiteButton(
+    modifier: Modifier = Modifier,
+    boxModifier: Modifier = Modifier,
+    text: String,
+    enabled: Boolean = true,
+    onClick: () -> Unit
+) {
+    SeekButton(
+        modifier = modifier,
+        boxModifier = boxModifier
+            .background(
+                Brush.verticalGradient(
+                    colors = MaterialTheme.colorScheme.grayButton,
+                ),
+            )
+            .padding(horizontal = 30.sdp, vertical = 10.sdp),
+        text = text,
+        textColor = MaterialTheme.colorScheme.brandBlue,
+        enabled = enabled,
+        onClick = onClick
     )
 }
 
@@ -71,7 +97,7 @@ fun DisableButton(
         text = text,
         textColor = MaterialTheme.colorScheme.white,
         enabled = enabled,
-        onCLick = onClick
+        onClick = onClick
     )
 }
 
@@ -83,7 +109,7 @@ fun SeekButton(
     textColor: Color,
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     enabled: Boolean = true,
-    onCLick: () -> Unit,
+    onClick: () -> Unit,
 ) {
     Button(
         modifier = modifier,
@@ -95,11 +121,10 @@ fun SeekButton(
 
         elevation = elevation,
         enabled = enabled,
-        onClick = { onCLick() },
+        onClick = { onClick() },
     ) {
         Box(
-            modifier = boxModifier
-                .clip(RoundedCornerShape(10.sdp)),
+            modifier = boxModifier.clip(RoundedCornerShape(10.sdp)),
             contentAlignment = Alignment.Center,
         ) {
             Row {
@@ -118,7 +143,7 @@ fun SeekButton(
 
 @Preview
 @Composable
-fun BlueButtonPreview() {
+private fun BlueButtonPreview() {
     BlueButton(
         modifier = Modifier.fillMaxWidth(),
         boxModifier = Modifier.fillMaxWidth(),
@@ -128,7 +153,17 @@ fun BlueButtonPreview() {
 
 @Preview
 @Composable
-fun DisableButtonPreview() {
+private fun RedButtonPreview() {
+    ThinWhiteButton(
+        modifier = Modifier.fillMaxWidth(),
+        boxModifier = Modifier.fillMaxWidth(),
+        text = "Seek",
+    ) {}
+}
+
+@Preview
+@Composable
+private fun DisableButtonPreview() {
     DisableButton(
         modifier = Modifier.fillMaxWidth(),
         boxModifier = Modifier.fillMaxWidth(),

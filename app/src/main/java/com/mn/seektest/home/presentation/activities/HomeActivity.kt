@@ -21,6 +21,7 @@ import com.mn.core.compose.SeekTestTheme
 import com.mn.core.constants.SeekConstants
 import com.mn.core.constants.SeekConstants.EXTRA_JOB_ID
 import com.mn.core.constants.SeekConstants.EXTRA_JOB_TITLE
+import com.mn.core.utils.SeekPreferencesHelper
 import com.mn.seektest.R
 import com.mn.seektest.home.navigation.HomeScreenNavigator
 import com.mn.seektest.home.navigation.HomeScreenRoute.*
@@ -40,14 +41,21 @@ import com.mn.seektest.home.presentation.widgets.JobDetailsListener
 import com.mn.seektest.home.presentation.widgets.JobDetailsScreen
 import com.mn.seektest.home.presentation.widgets.JobScreenListener
 import com.mn.seektest.home.presentation.widgets.MyJobsListener
+import com.mn.seektest.home.presentation.widgets.ProfileActionListener
+import com.mn.seektest.login.presentation.activities.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @AndroidEntryPoint
-class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener, MyJobsListener,
-    HomeScreenListener {
+class HomeActivity : ComponentActivity(),
+    JobScreenListener,
+    JobDetailsListener,
+    MyJobsListener,
+    HomeScreenListener,
+    ProfileActionListener {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
@@ -58,6 +66,9 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener,
     private val myJobsViewModel: MyJobsViewModel by viewModels()
 
     lateinit var navHostController: NavHostController
+
+    @Inject
+    lateinit var seekPreferencesHelper: SeekPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +93,7 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener,
                             homeScreenListener = this@HomeActivity,
                             jobScreenListener = this@HomeActivity,
                             myJobsListener = this@HomeActivity,
+                            profileActionListener = this@HomeActivity,
                         )
                     }
 
@@ -156,6 +168,13 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener,
         ).show()
     }
 
+    private fun performSignOut() {
+        seekPreferencesHelper.putBoolean(SeekConstants.IS_LOGIN, false)
+        seekPreferencesHelper.putString(SeekConstants.KEY_JWT_TOKEN, "")
+        LoginActivity.startActivity(this)
+        finish()
+    }
+
     companion object {
         fun startActivity(context: Context) {
             val intent = Intent(context, HomeActivity::class.java)
@@ -185,5 +204,9 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener,
 
     override fun onTabChanged(tabState: HomeTabs) {
         homeViewModel.updateTabState(tabState)
+    }
+
+    override fun onSignOut() {
+        performSignOut()
     }
 }

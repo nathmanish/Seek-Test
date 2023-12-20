@@ -30,6 +30,7 @@ fun HomeScreen(
     homeScreenListener: HomeScreenListener,
     jobScreenListener: JobScreenListener,
     myJobsListener: MyJobsListener,
+    profileActionListener: ProfileActionListener
 ) {
     val screens = listOf(HomeTabs.Jobs, HomeTabs.MyJobs, HomeTabs.Profile)
 
@@ -82,7 +83,9 @@ fun HomeScreen(
                     myJobsUIState = myJobsUIState
                 )
 
-                HomeTabs.Profile -> ProfileScreen()
+                HomeTabs.Profile -> ProfileScreen(
+                    profileActionListener = profileActionListener
+                )
             }
         }
     }

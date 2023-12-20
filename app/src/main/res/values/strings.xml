@@ -20,4 +20,11 @@
     <string name="no_active_description">There are no jobs available right now, Please try again later.</string>
     <string name="no_applied_jobs">0 Jobs Applied</string>
     <string name="no_applied_jobs_description">You haven\'t applied to any job yet.</string>
+    <string name="joined">Joined</string>
+    <string name="profile">Profile</string>
+    <string name="manage_profile">Manage Profile</string>
+    <string name="settings">Settings</string>
+    <string name="manage_settings">Manage Settings</string>
+    <string name="change_password">Change Password</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

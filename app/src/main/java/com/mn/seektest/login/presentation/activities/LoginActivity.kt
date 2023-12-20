@@ -1,5 +1,7 @@
 package com.mn.seektest.login.presentation.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -74,6 +76,13 @@ class LoginActivity : ComponentActivity(), LoginListener {
                     }
                 }
             }
+        }
+    }
+
+    companion object {
+        fun startActivity(context: Context) {
+            val intent = Intent(context, LoginActivity::class.java)
+            context.startActivity(intent)
         }
     }
 

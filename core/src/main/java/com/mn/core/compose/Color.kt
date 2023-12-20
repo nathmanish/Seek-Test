@@ -52,6 +52,9 @@ val ColorScheme.blackTransparent : Color
 val ColorScheme.blueButton: List<Color>
     get() = listOf(button, button)
 
+val ColorScheme.grayButton: List<Color>
+    get() = listOf(TextReversed, TextReversed)
+
 val ColorScheme.disableButton: List<Color>
     get() = listOf(TextSecondary, TextSecondary)
 
