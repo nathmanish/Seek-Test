@@ -1,6 +1,7 @@
 package com.mn.seektest.login.presentation.widgets
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import com.mn.core.compose.backgroundSecondary
 import com.mn.core.compose.brandBlue
 import com.mn.core.compose.button
 import com.mn.core.compose.caption2
@@ -59,6 +62,7 @@ fun LoginScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
+                .background(MaterialTheme.colorScheme.backgroundSecondary)
                 .padding(it),
         ) {
             Column(
@@ -97,6 +101,10 @@ fun LoginScreen(
                         emailAddress = it
                     },
                     singleLine = true,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.textPrimary,
+                        unfocusedTextColor = MaterialTheme.colorScheme.textPrimary,
+                    ),
                     label = {
                         Text(
                             text = stringResource(id = R.string.enter_email_address),
@@ -130,6 +138,10 @@ fun LoginScreen(
                     onValueChange = {
                         password = it
                     },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.textPrimary,
+                        unfocusedTextColor = MaterialTheme.colorScheme.textPrimary,
+                    ),
                     singleLine = true,
                     visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
@@ -139,7 +151,7 @@ fun LoginScreen(
                             },
                             painter = painterResource(id = R.drawable.ic_eye),
                             contentDescription = "show-password-icon",
-                            tint = if(isPasswordVisible) MaterialTheme.colorScheme.brandBlue else MaterialTheme.colorScheme.textSecondary
+                            tint = if (isPasswordVisible) MaterialTheme.colorScheme.brandBlue else MaterialTheme.colorScheme.textSecondary
                         )
                     },
                     label = {
