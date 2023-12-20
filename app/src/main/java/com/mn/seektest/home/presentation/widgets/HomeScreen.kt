@@ -13,27 +13,24 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.mn.core.compose.brandBlue
 import com.mn.core.compose.textSecondary
 import com.mn.seektest.home.navigation.HomeScreenNavigator
 import com.mn.seektest.home.presentation.states.ActiveJobsUIState
 import com.mn.seektest.home.presentation.states.HomeTabs
+import com.mn.seektest.home.presentation.states.MyJobsUIState
 
 @Composable
 fun HomeScreen(
     navigator: HomeScreenNavigator,
+    tabState: HomeTabs,
     activeJobsUIState: ActiveJobsUIState,
+    myJobsUIState: MyJobsUIState,
+    homeScreenListener: HomeScreenListener,
     jobScreenListener: JobScreenListener,
+    myJobsListener: MyJobsListener,
 ) {
-    var selectedTab: HomeTabs by remember {
-        mutableStateOf(HomeTabs.Jobs)
-    }
-
     val screens = listOf(HomeTabs.Jobs, HomeTabs.MyJobs, HomeTabs.Profile)
 
     Scaffold(
@@ -41,7 +38,7 @@ fun HomeScreen(
             NavigationBar {
                 screens.forEach { item ->
                     NavigationBarItem(
-                        selected = selectedTab == item,
+                        selected = tabState == item,
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = MaterialTheme.colorScheme.brandBlue,
                             indicatorColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
@@ -51,11 +48,11 @@ fun HomeScreen(
                         label = {
                             Text(
                                 text = item.label,
-                                color = if (selectedTab == item) MaterialTheme.colorScheme.brandBlue else MaterialTheme.colorScheme.textSecondary,
+                                color = if (tabState == item) MaterialTheme.colorScheme.brandBlue else MaterialTheme.colorScheme.textSecondary,
                             )
                         },
                         onClick = {
-                            selectedTab = item
+                            homeScreenListener.onTabChanged(item)
                         },
                         icon = {
                             Icon(
@@ -72,16 +69,25 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            when (selectedTab) {
+            when (tabState) {
                 HomeTabs.Jobs -> JobsScreen(
                     navigator = navigator,
                     jobScreenListener = jobScreenListener,
                     activeJobsUIState = activeJobsUIState
                 )
 
-                HomeTabs.MyJobs -> MyJobsScreen()
+                HomeTabs.MyJobs -> MyJobsScreen(
+                    navigator = navigator,
+                    myJobsListener = myJobsListener,
+                    myJobsUIState = myJobsUIState
+                )
+
                 HomeTabs.Profile -> ProfileScreen()
             }
         }
     }
+}
+
+interface HomeScreenListener {
+    fun onTabChanged(tabState: HomeTabs)
 }

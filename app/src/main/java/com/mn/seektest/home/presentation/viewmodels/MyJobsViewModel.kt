@@ -3,8 +3,8 @@ package com.mn.seektest.home.presentation.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.mn.seektest.home.domain.ActiveJobsRepository
-import com.mn.seektest.home.presentation.states.ActiveJobsUIState
+import com.mn.seektest.home.domain.MyJobsRepository
+import com.mn.seektest.home.presentation.states.MyJobsUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,33 +16,34 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class ActiveJobsViewModel @Inject constructor(
-    private val activeJobsRepository: ActiveJobsRepository,
+class MyJobsViewModel @Inject constructor(
+    private val myJobsRepository: MyJobsRepository,
     private val ioDispatcher: CoroutineDispatcher,
     private val mainDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _activeJobs = MutableStateFlow(ActiveJobsUIState())
-    val activeJobs = _activeJobs.asStateFlow()
+    private val _myJobsUIState = MutableStateFlow(MyJobsUIState())
+    val myJobsUIState = _myJobsUIState.asStateFlow()
 
     init {
-        getActiveJobs()
+        getMyJobs()
     }
 
-    fun getActiveJobs() {
-        _activeJobs.update { it.copy(isLoading = true) }
+    fun getMyJobs() {
+        _myJobsUIState.update { it.copy(isLoading = true) }
         viewModelScope.launch(ioDispatcher) {
-            activeJobsRepository.getActiveJobs().cachedIn(viewModelScope)
-                .collectLatest { pagingData ->
+            runCatching {
+                myJobsRepository.getMyJobs().cachedIn(viewModelScope).collectLatest { pagingData ->
                     withContext(mainDispatcher) {
-                        _activeJobs.update {
+                        _myJobsUIState.update {
                             it.copy(
                                 isLoading = false,
-                                data = MutableStateFlow(pagingData)
+                                data = MutableStateFlow(pagingData),
                             )
                         }
                     }
                 }
+            }
         }
     }
 }

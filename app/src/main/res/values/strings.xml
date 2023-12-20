@@ -16,4 +16,8 @@
     <string name="apply_now">Apply Now</string>
     <string name="applied">Applied</string>
     <string name="revoke">Revoke Application</string>
+    <string name="no_active_jobs">0 Jobs Available</string>
+    <string name="no_active_description">There are no jobs available right now, Please try again later.</string>
+    <string name="no_applied_jobs">0 Jobs Applied</string>
+    <string name="no_applied_jobs_description">You haven\'t applied to any job yet.</string>
 </resources>

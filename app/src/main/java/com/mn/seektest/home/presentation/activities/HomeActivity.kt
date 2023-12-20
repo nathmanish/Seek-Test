@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mn.core.compose.SeekTestTheme
+import com.mn.core.constants.SeekConstants
 import com.mn.core.constants.SeekConstants.EXTRA_JOB_ID
 import com.mn.core.constants.SeekConstants.EXTRA_JOB_TITLE
 import com.mn.seektest.R
@@ -26,24 +27,35 @@ import com.mn.seektest.home.navigation.HomeScreenRoute.*
 import com.mn.seektest.home.presentation.states.ActiveJobsUIState
 import com.mn.seektest.home.presentation.states.ApplyJobUIEvent
 import com.mn.seektest.home.presentation.states.ApplyJobUIState
+import com.mn.seektest.home.presentation.states.HomeTabs
 import com.mn.seektest.home.presentation.states.JobDetailsUIState
+import com.mn.seektest.home.presentation.states.MyJobsUIState
 import com.mn.seektest.home.presentation.viewmodels.ActiveJobsViewModel
+import com.mn.seektest.home.presentation.viewmodels.HomeViewModel
 import com.mn.seektest.home.presentation.viewmodels.JobDetailsViewModel
+import com.mn.seektest.home.presentation.viewmodels.MyJobsViewModel
 import com.mn.seektest.home.presentation.widgets.HomeScreen
+import com.mn.seektest.home.presentation.widgets.HomeScreenListener
 import com.mn.seektest.home.presentation.widgets.JobDetailsListener
 import com.mn.seektest.home.presentation.widgets.JobDetailsScreen
 import com.mn.seektest.home.presentation.widgets.JobScreenListener
+import com.mn.seektest.home.presentation.widgets.MyJobsListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @AndroidEntryPoint
-class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener {
+class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener, MyJobsListener,
+    HomeScreenListener {
+
+    private val homeViewModel: HomeViewModel by viewModels()
 
     private val activeJobsViewModel: ActiveJobsViewModel by viewModels()
 
     private val jobDetailsViewModel: JobDetailsViewModel by viewModels()
+
+    private val myJobsViewModel: MyJobsViewModel by viewModels()
 
     lateinit var navHostController: NavHostController
 
@@ -57,12 +69,19 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener 
                     startDestination = HomeScreen.route
                 ) {
                     composable(route = HomeScreen.route) {
+
+                        val tabState: HomeTabs by homeViewModel.homeTabState.collectAsState(initial = HomeTabs.Jobs)
                         val activeJobsUIState: ActiveJobsUIState by activeJobsViewModel.activeJobs.collectAsState()
+                        val myJobsUIState: MyJobsUIState by myJobsViewModel.myJobsUIState.collectAsState()
 
                         HomeScreen(
                             navigator = navigator,
+                            tabState = tabState,
                             activeJobsUIState = activeJobsUIState,
-                            jobScreenListener = this@HomeActivity
+                            myJobsUIState = myJobsUIState,
+                            homeScreenListener = this@HomeActivity,
+                            jobScreenListener = this@HomeActivity,
+                            myJobsListener = this@HomeActivity,
                         )
                     }
 
@@ -122,6 +141,7 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener 
                     is ApplyJobUIEvent.ReloadJob -> {
                         jobDetailsViewModel.getJobDetails(it.jobId)
                         activeJobsViewModel.getActiveJobs()
+                        myJobsViewModel.getMyJobs()
                     }
                 }
             }
@@ -143,8 +163,12 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener 
         }
     }
 
-    override fun onSwipeRefresh() {
-        activeJobsViewModel.getActiveJobs()
+    override fun onSwipeRefresh(from: String) {
+        if (from == SeekConstants.FROM_ACTIVE_JOBS) {
+            activeJobsViewModel.getActiveJobs()
+        } else if (from == SeekConstants.FROM_MY_JOBS) {
+            myJobsViewModel.getMyJobs()
+        }
     }
 
     override fun initJob(jobId: String) {
@@ -157,5 +181,9 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener 
 
     override fun onLoadError() {
         showErrorToast()
+    }
+
+    override fun onTabChanged(tabState: HomeTabs) {
+        homeViewModel.updateTabState(tabState)
     }
 }
