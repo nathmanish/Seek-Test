@@ -10,8 +10,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.mn.core.compose.blackTransparent
 import com.mn.core.compose.blue
 import com.mn.core.extensions.noRippleClickable
 import ir.kaaveh.sdpcompose.sdp
@@ -21,7 +21,7 @@ fun SeekLoader() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.blackTransparent)
+            .background(color = Color.Transparent)
             .noRippleClickable { },
         contentAlignment = Alignment.Center
     ) {

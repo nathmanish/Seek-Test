@@ -68,6 +68,10 @@ fun DependencyHandler.implementComposeNavigation() {
     implementation(COMPOSE_NAVIGATION)
 }
 
+fun DependencyHandler.implementOkhttpInterceptor() {
+    implementation(OK_HTTP_INTERCEPTOR)
+}
+
 fun DependencyHandler.testImplementationJUnit() {
     testImplementation(TEST_JUNIT)
 }

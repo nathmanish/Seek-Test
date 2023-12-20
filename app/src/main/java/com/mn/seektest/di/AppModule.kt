@@ -3,6 +3,7 @@ package com.mn.seektest.di
 import android.content.Context
 import com.apollographql.apollo3.ApolloClient
 import com.mn.core.constants.SeekConstants
+import com.mn.core.network.ApolloService
 import com.mn.core.utils.SeekPreferencesHelper
 import dagger.Module
 import dagger.Provides
@@ -16,11 +17,16 @@ import kotlinx.coroutines.Dispatchers
 object AppModule {
 
     @Provides
-    fun provideApolloClient(): ApolloClient {
-        return ApolloClient.Builder()
-            .serverUrl(SeekConstants.SERVER_URL)
-            .build()
+    fun provideApolloClient(
+        serverURL: String,
+        seekPreferencesHelper: SeekPreferencesHelper
+
+    ): ApolloClient {
+        return ApolloService(serverURL, seekPreferencesHelper).apolloClient
     }
+
+    @Provides
+    fun provideServerUrl(): String = SeekConstants.SERVER_URL
 
     @Provides
     fun provideSeekPreferencesHelper(@ApplicationContext context: Context): SeekPreferencesHelper {

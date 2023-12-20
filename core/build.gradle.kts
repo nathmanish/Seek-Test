@@ -60,6 +60,7 @@ dependencies {
     implementComposeMaterial3()
     implementSDPCompose()
     addApolloApi()
+    implementOkhttpInterceptor()
     testImplementationJUnit()
     androidTestImplementationExtJUnit()
     androidTestImplementationEspressoCore()

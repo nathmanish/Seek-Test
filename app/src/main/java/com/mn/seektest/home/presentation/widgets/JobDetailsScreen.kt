@@ -144,7 +144,7 @@ fun JobDetailsScreen(
                         DisableButton(
                             modifier = Modifier.padding(top = 20.sdp),
                             boxModifier = Modifier.fillMaxWidth(),
-                            text = stringResource(id = R.string.applied),
+                            text = stringResource(id = R.string.revoke),
                         ) {
                             if (jobId != null) {
                                 jobDetailsListener?.applyJob(jobId)
@@ -153,7 +153,7 @@ fun JobDetailsScreen(
                     }
                 }
 
-                if (jobDetailsUIState.isLoading) {
+                if (jobDetailsUIState.isLoading || applyJobUIState.isLoading) {
                     SeekLoader()
                 }
             }

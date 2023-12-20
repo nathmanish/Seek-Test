@@ -24,6 +24,7 @@ import com.mn.seektest.R
 import com.mn.seektest.home.navigation.HomeScreenNavigator
 import com.mn.seektest.home.navigation.HomeScreenRoute.*
 import com.mn.seektest.home.presentation.states.ActiveJobsUIState
+import com.mn.seektest.home.presentation.states.ApplyJobUIEvent
 import com.mn.seektest.home.presentation.states.ApplyJobUIState
 import com.mn.seektest.home.presentation.states.JobDetailsUIState
 import com.mn.seektest.home.presentation.viewmodels.ActiveJobsViewModel
@@ -112,9 +113,16 @@ class HomeActivity : ComponentActivity(), JobScreenListener, JobDetailsListener 
 
     private fun observerViewModels() = with(lifecycleScope) {
         launch {
-            jobDetailsViewModel.applyJobUIState.collectLatest {
-                if (it.showError) {
-                    showErrorToast()
+            jobDetailsViewModel.applyJobUIEvent.collectLatest {
+                when (it) {
+                    is ApplyJobUIEvent.OnError -> {
+                        showErrorToast()
+                    }
+
+                    is ApplyJobUIEvent.ReloadJob -> {
+                        jobDetailsViewModel.getJobDetails(it.jobId)
+                        activeJobsViewModel.getActiveJobs()
+                    }
                 }
             }
         }

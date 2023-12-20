@@ -25,7 +25,7 @@ internal const val VIEW_MODEL_COMPOSE =
 internal const val SWIPE_REFRESH =
     "com.google.accompanist:accompanist-swiperefresh:$SWIPE_REFRESH_VERSION"
 internal const val COMPOSE_NAVIGATION = "androidx.navigation:navigation-compose:$COMPOSE_NAVIGATION_VERSION"
-
+internal const val OK_HTTP_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:$OK_HTTP_INTERCEPTOR_VERSION"
 // test
 internal const val TEST_JUNIT = "junit:junit:$VERSION_JUNIT"
 internal const val TEST_ANDROID_EXT_JUNIT = "androidx.test.ext:junit:$VERSION_ANDROID_EXT_JUNIT"
