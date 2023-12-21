@@ -34,6 +34,11 @@ internal const val TEST_ANDROID_ESPRESSO_CORE =
 internal const val TEST_ANDROID_COMPOSE_BOM =
     "androidx.compose:compose-bom:$VERSION_ANDROID_COMPOSE_BOM"
 internal const val TEST_COMPOSE_UI_TEST_JUNIT = "androidx.compose.ui:ui-test-junit4"
+internal const val CORE_TESTING = "androidx.arch.core:core-testing:$CORE_TESTING_VERSION"
+internal const val COROUTINE_TESTING = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$COROUTINE_TESTING_VERSION"
+internal const val MOCKITO_CORE = "org.mockito:mockito-core:$MOCKITO_VERSION"
+internal const val MOCKITO_INLINE = "org.mockito:mockito-inline:$MOCKITO_VERSION"
+internal const val MOCKITO_KOTLIN = "com.nhaarman:mockito-kotlin:$MOCKITO_KOTLIN_VERSION"
 
 // debug implementation
 internal const val COMPOSE_UI_TOOLING = "androidx.compose.ui:ui-tooling"

@@ -76,6 +76,26 @@ fun DependencyHandler.testImplementationJUnit() {
     testImplementation(TEST_JUNIT)
 }
 
+fun DependencyHandler.testImplementationCoreTesting() {
+    testImplementation(CORE_TESTING)
+}
+
+fun DependencyHandler.testImplementationCoroutineTesting() {
+    testImplementation(COROUTINE_TESTING)
+}
+
+fun DependencyHandler.testImplementationMockitoCore() {
+    testImplementation(MOCKITO_CORE)
+}
+
+fun DependencyHandler.testImplementationMockitoInline() {
+    testImplementation(MOCKITO_INLINE)
+}
+
+fun DependencyHandler.testImplementationMockitoKotlin() {
+    testImplementation(MOCKITO_KOTLIN)
+}
+
 fun DependencyHandler.androidTestImplementationExtJUnit() {
     androidTestImplementation(TEST_ANDROID_EXT_JUNIT)
 }

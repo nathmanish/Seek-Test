@@ -2,6 +2,9 @@
 
 # Android Studio Hedgehog | 2023.1.1
 
+# Note -
+* Please update the SERVER_URL in SeekConstants file before running the application.
+
 # Libraries Used
 
 * Material3 - Design Standard for Compose.
@@ -27,3 +30,4 @@
 * Implement the My Jobs API to fetch the user applied jobs.
 * Backend work needs to done for Changing the password, User profile, and Forgot Password.
 * More fields can be added in job details
+* Add test Junit and UI test cases for all the testable classes. Need to debug why mockito is not able to call method on Mocked object.
